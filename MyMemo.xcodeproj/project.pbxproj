@@ -77,8 +77,8 @@
 				5B11F11C23F1AC6F00894F2D /* Info.plist */,
 				5B11F11423F1AC6F00894F2D /* MyMemo.xcdatamodeld */,
 				5B11F12223F1C84900894F2D /* MemoListTableViewController.swift */,
-				5B38C8FD23F3147400134676 /* AddNewMemoViewController.swift */,
 				5B3CF5E523F87DF300A73405 /* DetailMemoViewController.swift */,
+				5B38C8FD23F3147400134676 /* AddNewMemoViewController.swift */,
 				5BC711BB23F925D1008FDE8B /* ImageTableViewCell.swift */,
 				5BA20EAB23F9B391002E0EF2 /* Alert.swift */,
 			);

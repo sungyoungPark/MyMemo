@@ -39,23 +39,28 @@ class DataManager {
     //새로운 메모 저장
     func saveNewMemo (_ title : String? , _ mainText : String? , _ addImage : [UIImage]) {
         let newMemo = MyMemo(context: mainContext)
-        var memoImage = [Data]()
+        
         newMemo.title = title
         newMemo.mainText = mainText
         newMemo.createDate = Date()
        
         if addImage.count != 0 {
-        for i in addImage{
-           // let imageData =  i.pngData()
-            let imageData = i.jpegData(compressionQuality: 0.8)
-            memoImage.append(imageData!)
-        }
-        newMemo.myImage = memoImage
+        newMemo.myImage = convertImageToData(addImage)
         }
         
         memoList.insert(newMemo, at: 0)
         saveContext()
         
+    }
+    
+    func convertImageToData( _ image : [UIImage]) -> [Data]{
+        var memoImage = [Data]()
+        for i in image{
+           // let imageData =  i.pngData()
+            let imageData = i.jpegData(compressionQuality: 0.8)
+            memoImage.append(imageData!)
+        }
+        return memoImage
     }
     
     func removeMemo( _ MyMemo : MyMemo? ) {
@@ -87,7 +92,7 @@ class DataManager {
               do {
                   try context.save()
               } catch {
-                  
+
                   let nserror = error as NSError
                   fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
               }

@@ -112,6 +112,7 @@ class MemoListTableViewController: UITableViewController {
         if let cell = sender as? UITableViewCell , let indexPath = tableView.indexPath(for: cell) {
             if let vc = segue.destination as? DetailMemoViewController {
                 vc.memo = DataManager.shared.memoList[indexPath.row]
+              
             }
         }
         

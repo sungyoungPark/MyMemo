@@ -20,31 +20,39 @@ class DetailMemoViewController: UIViewController {
     
     
     
+    @IBOutlet var detailTableView: UITableView!
     var memo : MyMemo?
-    @IBOutlet var tv: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tv.allowsSelection = false
         //tv.rowHeight = UITableView.automaticDimension
         //tv.estimatedRowHeight = UITableView.automaticDimension
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("다시 나타남")
+        DataManager.shared.fetchMemo()
+        detailTableView.reloadData()
+      }
+    
     
     @IBAction func delMeMo(_ sender: Any) {
         DataManager.shared.removeMemo(memo)
         navigationController?.popViewController(animated: true)
     }
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+        if let vc = segue.destination as? AddNewMemoViewController{
+            vc.fromDetailView = memo
+        }
+        
+        
      }
-     */
+     
     
 }
 
@@ -60,7 +68,7 @@ extension DetailMemoViewController : UITableViewDataSource , UITableViewDelegate
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "titleCell", for: indexPath )
             cell.textLabel?.text = memo?.title
-            
+           
             return cell
             
         case 1:
@@ -75,21 +83,26 @@ extension DetailMemoViewController : UITableViewDataSource , UITableViewDelegate
             
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "imageCell", for: indexPath ) as! ImageTableViewCell
-  
-            if memo?.myImage != nil && cell.sv.arrangedSubviews.count <= (memo?.myImage!.count)! {
+            if cell.sv.arrangedSubviews.count != 0 {
+                for i in cell.sv.arrangedSubviews{
+                    i.removeFromSuperview()
+                }
+            }
+            var index = 0
+            if memo?.myImage != nil{
+                //&& cell.sv.arrangedSubviews.count != (memo?.myImage!.count)! {
                 for image in memo!.myImage! {
-                    let index = cell.sv.arrangedSubviews.count
                     let thumbnailView = UIImageView()
                     thumbnailView.image = UIImage(data: image)
                     thumbnailView.contentMode = .scaleAspectFit
                     
-                    thumbnailView.image = resizeImage(image: thumbnailView.image!, width: view.frame.size.width)
+                    thumbnailView.image = resizeDetailImage(image: thumbnailView.image!, width: view.frame.size.width)
                         
                     cell.sv.insertArrangedSubview(thumbnailView, at: index)
-                    
+                    index += 1
                 }
             }
-            
+            print(cell.sv.arrangedSubviews.count)
             return cell
             
         default:
@@ -102,7 +115,7 @@ extension DetailMemoViewController : UITableViewDataSource , UITableViewDelegate
     }
     
     // 가로 세로 비율을 맞춰서 이미지 사이즈 조절
-    func resizeImage(image: UIImage, width: CGFloat) -> UIImage {
+    func resizeDetailImage(image: UIImage, width: CGFloat) -> UIImage {
        let scale = image.size.height / image.size.width
         let height = width * scale
         
