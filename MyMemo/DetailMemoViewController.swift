@@ -30,7 +30,6 @@ class DetailMemoViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("다시 나타남")
         DataManager.shared.fetchMemo()
         detailTableView.reloadData()
       }
@@ -90,19 +89,15 @@ extension DetailMemoViewController : UITableViewDataSource , UITableViewDelegate
             }
             var index = 0
             if memo?.myImage != nil{
-                //&& cell.sv.arrangedSubviews.count != (memo?.myImage!.count)! {
                 for image in memo!.myImage! {
                     let thumbnailView = UIImageView()
                     thumbnailView.image = UIImage(data: image)
                     thumbnailView.contentMode = .scaleAspectFit
-                    
                     thumbnailView.image = resizeDetailImage(image: thumbnailView.image!, width: view.frame.size.width)
-                        
                     cell.sv.insertArrangedSubview(thumbnailView, at: index)
                     index += 1
                 }
             }
-            print(cell.sv.arrangedSubviews.count)
             return cell
             
         default:

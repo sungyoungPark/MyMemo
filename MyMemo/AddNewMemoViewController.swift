@@ -33,12 +33,18 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
         
         if fromDetailView == nil {
             title = "새 메모"
+            imageStackView.isHidden = true
         }
         else if fromDetailView != nil {
             title = "편집"
             titleTextField.text = fromDetailView?.title
             mainTextView.text = fromDetailView?.mainText
-            editLoadImage(fromDetailView!.myImage!)
+            if fromDetailView?.myImage != nil {
+                editLoadImage(fromDetailView!.myImage!)
+            }
+            else if fromDetailView?.myImage == nil {
+                imageStackView.isHidden = true
+            }
         }
         
         //imageStackView.isHidden = true
@@ -46,11 +52,12 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
     }
     
     func editLoadImage(_ dataArr : [Data]){
+        
         for data in dataArr{
             let image = UIImage(data: data)
-            
             upLoadImage(image!)
         }
+        
     }
     
     
@@ -81,13 +88,30 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
                 DataManager.shared.saveContext()
             }
             else {
-                 DataManager.shared.saveNewMemo(titleTextField.text, mainTextView.text, imageArr)
+                DataManager.shared.saveNewMemo(titleTextField.text, mainTextView.text, imageArr)
             }
             
             navigationController?.popViewController(animated: true)
         }
     }
     
+    @IBAction func backBtn(_ sender: Any) {
+        var msg : String?
+        if title == "새 메모" {
+            msg = "작성"
+        }
+        else if title == "편집"{
+            msg = "편집"
+        }
+        let alert = UIAlertController(title: "알림", message: msg! + "을 취소하시겠습니까?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default ){
+            (action) in self.navigationController?.popViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func addImageBtn(_ sender: Any) { //alert쪽으로 이동 할것
         let alert =  UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -160,24 +184,26 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
     }
     
     @objc func tapImageForDelete(sender : UITapGestureRecognizer){  //이미지 탭하여 삭제
-        print("touch")
         var index = 0
         for imageView in imageUpdateView.subviews{
-                let location = sender.location(in: imageView)
-                if imageView.hitTest(location, with: nil) != nil {
-                    print(index)
-                    UIView.animate(withDuration: 0.25, animations: {
-                        imageView.isHidden = true
-                    }, completion: { _ in
-                        imageView.removeFromSuperview()
-                        
-                    })
-                    break
-                }
-            index += 1
+            let location = sender.location(in: imageView)
+            if imageView.hitTest(location, with: nil) != nil {
+                UIView.animate(withDuration: 0.25, animations: {
+                    imageView.isHidden = true
+                }, completion: { _ in
+                    imageView.removeFromSuperview()
+                    
+                })
+                break
             }
-        self.imageArr.remove(at: index)
+            index += 1
         }
+        self.imageArr.remove(at: index)
+        if imageArr.count == 0 {
+            imageStackView.isHidden = true
+        }
+        
+    }
     
     func upLoadImage( _ image : UIImage) {
         let updateImage = UIImageView()
@@ -193,6 +219,11 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
         
         imageUpdateView.insertArrangedSubview(updateImage, at: nextIndex)
         imageArr.append(image)
+        
+        if imageArr.count != 0 {
+            imageStackView.isHidden = false
+        }
+        
     }
     
     
@@ -251,7 +282,5 @@ UINavigationControllerDelegate{
         dismiss(animated: true, completion: nil)
         
     }
-    
-    
     
 }

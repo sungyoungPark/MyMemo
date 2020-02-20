@@ -80,10 +80,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="707"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jEV-kK-pae" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="875.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mQa-da-33T">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="758"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="875.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="y06-8j-uWQ" userLabel="titleFieldView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
@@ -99,23 +99,17 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="jZd-gI-5Ko" userLabel="mainTextView">
-                                                                <rect key="frame" x="0.0" y="48" width="414" height="420"/>
+                                                                <rect key="frame" x="0.0" y="48" width="414" height="537.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상세내용 " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZY-CG-JgC">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="20" id="JIO-up-tQ5"/>
-                                                                        </constraints>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="me1-AN-fxh">
-                                                                        <rect key="frame" x="0.0" y="20" width="414" height="400"/>
+                                                                        <rect key="frame" x="0.0" y="45" width="414" height="492.5"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="400" id="jxw-Be-PDy"/>
-                                                                        </constraints>
                                                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -123,9 +117,9 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dDy-D0-JK7">
-                                                                <rect key="frame" x="0.0" y="476" width="414" height="282"/>
+                                                                <rect key="frame" x="0.0" y="593.5" width="414" height="282"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첨부 이미지" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsn-35-ssf">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첨부 이미지 (이미지 클릭시 삭제)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsn-35-ssf">
                                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="JVz-MN-sRF"/>
@@ -203,12 +197,19 @@
                         <constraints>
                             <constraint firstItem="IP9-4p-NSB" firstAttribute="leading" secondItem="McH-Yd-gfY" secondAttribute="leading" id="55t-XS-4bG"/>
                             <constraint firstAttribute="bottom" secondItem="IP9-4p-NSB" secondAttribute="bottom" id="64x-ra-Omp"/>
+                            <constraint firstItem="tZY-CG-JgC" firstAttribute="height" secondItem="OWx-Q1-i26" secondAttribute="height" multiplier="0.05" id="MAY-qk-VUu"/>
                             <constraint firstAttribute="trailing" secondItem="IP9-4p-NSB" secondAttribute="trailing" id="NvY-Se-V0D"/>
+                            <constraint firstItem="me1-AN-fxh" firstAttribute="height" secondItem="OWx-Q1-i26" secondAttribute="height" multiplier="0.55" id="c5Q-6I-eX0"/>
                             <constraint firstItem="IP9-4p-NSB" firstAttribute="top" secondItem="McH-Yd-gfY" secondAttribute="top" id="kO4-OO-hyZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="McH-Yd-gfY"/>
                     </view>
                     <navigationItem key="navigationItem" id="CPp-ty-YKI">
+                        <barButtonItem key="leftBarButtonItem" title="뒤로가기" id="AIH-Jb-vxa">
+                            <connections>
+                                <action selector="backBtn:" destination="tXf-RK-wQH" id="gzc-dM-qzu"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="저장" id="mvP-yO-TKO">
                             <connections>
                                 <action selector="saveMemo:" destination="tXf-RK-wQH" id="hqy-6w-o25"/>
