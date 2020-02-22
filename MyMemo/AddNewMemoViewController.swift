@@ -191,7 +191,7 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
             imageStackView.isHidden = false
         }
         
-        let offset = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y + (updateImage.image?.size.height)! + imageUpdateView.spacing)
+        let offset = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y + (updateImage.image?.size.height)! + imageUpdateView.spacing + view.bounds.size.height)
         UIView.animate(withDuration: 0.25) {
                    self.scrollView.contentOffset = offset
                }
