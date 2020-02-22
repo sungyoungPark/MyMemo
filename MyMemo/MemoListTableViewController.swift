@@ -14,15 +14,10 @@ class MemoListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         DataManager.shared.fetchMemo()
         tvListView.reloadData()
     }
@@ -45,31 +40,19 @@ class MemoListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "memoCell", for: indexPath)
-        
         // Configure the cell...
-        let test = DataManager.shared.memoList[indexPath.row]
-        
-        if test.myImage?.count != nil {
-            let thumbnail = UIImage(data: test.myImage!.first!)
+        let memo = DataManager.shared.memoList[indexPath.row]
+        if memo.myImage?.count != nil && memo.myImage?.count != 0 {
+            let thumbnail = UIImage(data: memo.myImage!.first!)
             cell.imageView?.image = thumbnail
         }
         else{
             cell.imageView?.image = nil
         }
-        cell.textLabel?.text = test.title
-        cell.detailTextLabel?.text = test.mainText
+        cell.textLabel?.text = memo.title
+        cell.detailTextLabel?.text = memo.mainText
         return cell
     }
-    
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
     
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -89,35 +72,14 @@ class MemoListTableViewController: UITableViewController {
         return "삭제"
     }
     
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    
     // MARK: - Navigation
-    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let cell = sender as? UITableViewCell , let indexPath = tableView.indexPath(for: cell) {
             if let vc = segue.destination as? DetailMemoViewController {
                 vc.memo = DataManager.shared.memoList[indexPath.row]
-              
             }
         }
-        
-        
     }
-    
     
 }

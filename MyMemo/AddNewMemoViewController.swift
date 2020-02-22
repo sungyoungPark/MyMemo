@@ -15,6 +15,7 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
     @IBOutlet var imageStackView: UIStackView!
     @IBOutlet var rightBarBtn: UIBarButtonItem!
     @IBOutlet var imageUpdateView: UIStackView!
+    @IBOutlet var scrollView: UIScrollView!
     
     let picker = UIImagePickerController()
     var imageArr = [UIImage]() // 이미지 저장 하는 배열
@@ -42,24 +43,21 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
             if fromDetailView?.myImage != nil {
                 editLoadImage(fromDetailView!.myImage!)
             }
-            else if fromDetailView?.myImage == nil {
+            if imageArr.count != 0  {
+                imageStackView.isHidden = false
+            }
+            else if imageArr.count == 0  {
                 imageStackView.isHidden = true
             }
         }
-        
-        //imageStackView.isHidden = true
-        //imageStack.isHidden = true
     }
     
     func editLoadImage(_ dataArr : [Data]){
-        
         for data in dataArr{
             let image = UIImage(data: data)
             upLoadImage(image!)
         }
-        
     }
-    
     
     @IBAction func saveMemo(_ sender: Any) {
         
@@ -96,53 +94,24 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
     }
     
     @IBAction func backBtn(_ sender: Any) {
-        var msg : String?
+        var msg = ""
         if title == "새 메모" {
             msg = "작성"
         }
         else if title == "편집"{
             msg = "편집"
         }
-        let alert = UIAlertController(title: "알림", message: msg! + "을 취소하시겠습니까?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "예", style: .default ){
-            (action) in self.navigationController?.popViewController(animated: true)
-        }
-        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
-        alert.addAction(okAction)
-        alert.addAction(cancelAction)
-        present(alert, animated: true, completion: nil)
+        alertBackBtn(msg)
     }
     
     @IBAction func addImageBtn(_ sender: Any) { //alert쪽으로 이동 할것
-        let alert =  UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        
-        let library =  UIAlertAction(title: "사진앨범", style: .default) { (action) in
-            self.openLibrary()
-        }
-        
-        let camera =  UIAlertAction(title: "카메라", style: .default) { (action) in
-            self.openCamera()
-        }
-        
-        let URL = UIAlertAction(title: "URL", style: .default) { (action) in
-            self.loadURL()
-        }
-        
-        let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
-        
-        alert.addAction(library)
-        alert.addAction(camera)
-        alert.addAction(URL)
-        alert.addAction(cancel)
-        present(alert, animated: true, completion: nil)
-        
+        alertAddImage()
     }
     
     func openLibrary()
     {
         picker.sourceType = .photoLibrary
         present(picker, animated: false, completion: nil)
-        
     }
     
     func openCamera()
@@ -152,7 +121,7 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
             present(picker, animated: false, completion: nil)
         }
         else{
-            print("Camera not available")
+            alert(message: "카메라를 사용 할 수 없습니다")
         }
     }
     
@@ -168,9 +137,7 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
                 do{
                     let data = try Data(contentsOf: url)
                     let image = UIImage(data: data)
-                    
                     self.upLoadImage(image!)
-                    
                 } catch let err { //오류 처리 할것...
                     print("Error : \(err.localizedDescription)")
                     self.alert(message: "잘 못된 URL 입니다.")
@@ -213,10 +180,10 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
         let scale = UIScreen.main.bounds.width / 2
         
         updateImage.isUserInteractionEnabled = true
-        updateImage.image = resizeImage(image: image, height: scale )
+        updateImage.image = resizeAddImage(image: image, height: scale )
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapImageForDelete))
         updateImage.addGestureRecognizer(tapGesture)
-        
+       
         imageUpdateView.insertArrangedSubview(updateImage, at: nextIndex)
         imageArr.append(image)
         
@@ -224,21 +191,13 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
             imageStackView.isHidden = false
         }
         
-    }
-    
-    
-    // 가로 세로 비율을 맞춰서 이미지 사이즈 조절
-    func resizeImage(image: UIImage, height: CGFloat) -> UIImage {
-        let scale = height / image.size.height
-        let width = image.size.width * scale
+        let offset = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y + (updateImage.image?.size.height)! + imageUpdateView.spacing)
+        UIView.animate(withDuration: 0.25) {
+                   self.scrollView.contentOffset = offset
+               }
         
-        UIGraphicsBeginImageContext(CGSize(width: width, height: height))
-        image.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage!
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
@@ -256,17 +215,6 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
         rightBarBtn.title = "완료"
     }
     
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 extension AddNewMemoViewController : UIImagePickerControllerDelegate,
@@ -277,7 +225,6 @@ UINavigationControllerDelegate{
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         {
             upLoadImage(image)
-            // print(info)
         }
         dismiss(animated: true, completion: nil)
         

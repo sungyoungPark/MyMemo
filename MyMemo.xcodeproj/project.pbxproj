@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B10F98E23FFF0DE00DAE458 /* AddNewMemoViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10F98D23FFF0DE00DAE458 /* AddNewMemoViewController+Alert.swift */; };
+		5B10F99023FFF3D700DAE458 /* resizeImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B10F98F23FFF3D700DAE458 /* resizeImage.swift */; };
 		5B11F10C23F1AC6F00894F2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B11F10B23F1AC6F00894F2D /* AppDelegate.swift */; };
 		5B11F10E23F1AC6F00894F2D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B11F10D23F1AC6F00894F2D /* SceneDelegate.swift */; };
 		5B11F11323F1AC6F00894F2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B11F11123F1AC6F00894F2D /* Main.storyboard */; };
@@ -17,11 +19,14 @@
 		5B38C8FC23F2FD3300134676 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C8FB23F2FD3300134676 /* DataManager.swift */; };
 		5B38C8FE23F3147400134676 /* AddNewMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B38C8FD23F3147400134676 /* AddNewMemoViewController.swift */; };
 		5B3CF5E623F87DF300A73405 /* DetailMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B3CF5E523F87DF300A73405 /* DetailMemoViewController.swift */; };
-		5BA20EAC23F9B391002E0EF2 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA20EAB23F9B391002E0EF2 /* Alert.swift */; };
+		5BA20EAC23F9B391002E0EF2 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BA20EAB23F9B391002E0EF2 /* UIViewController+Alert.swift */; };
 		5BC711BC23F925D1008FDE8B /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BC711BB23F925D1008FDE8B /* ImageTableViewCell.swift */; };
+		5BFAB1A42401927300885320 /* dateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BFAB1A32401927300885320 /* dateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5B10F98D23FFF0DE00DAE458 /* AddNewMemoViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddNewMemoViewController+Alert.swift"; sourceTree = "<group>"; };
+		5B10F98F23FFF3D700DAE458 /* resizeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resizeImage.swift; sourceTree = "<group>"; };
 		5B11F10823F1AC6F00894F2D /* MyMemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B11F10B23F1AC6F00894F2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B11F10D23F1AC6F00894F2D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,8 +39,9 @@
 		5B38C8FB23F2FD3300134676 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		5B38C8FD23F3147400134676 /* AddNewMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewMemoViewController.swift; sourceTree = "<group>"; };
 		5B3CF5E523F87DF300A73405 /* DetailMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMemoViewController.swift; sourceTree = "<group>"; };
-		5BA20EAB23F9B391002E0EF2 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		5BA20EAB23F9B391002E0EF2 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		5BC711BB23F925D1008FDE8B /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		5BFAB1A32401927300885320 /* dateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B10F98C23FFF0BB00DAE458 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				5BA20EAB23F9B391002E0EF2 /* UIViewController+Alert.swift */,
+				5B10F98D23FFF0DE00DAE458 /* AddNewMemoViewController+Alert.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
 		5B11F0FF23F1AC6F00894F2D = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +83,7 @@
 		5B11F10A23F1AC6F00894F2D /* MyMemo */ = {
 			isa = PBXGroup;
 			children = (
+				5B10F98C23FFF0BB00DAE458 /* Alert */,
 				5B38C8FA23F2FBD700134676 /* Data */,
 				5B11F10B23F1AC6F00894F2D /* AppDelegate.swift */,
 				5B11F10D23F1AC6F00894F2D /* SceneDelegate.swift */,
@@ -80,7 +96,8 @@
 				5B3CF5E523F87DF300A73405 /* DetailMemoViewController.swift */,
 				5B38C8FD23F3147400134676 /* AddNewMemoViewController.swift */,
 				5BC711BB23F925D1008FDE8B /* ImageTableViewCell.swift */,
-				5BA20EAB23F9B391002E0EF2 /* Alert.swift */,
+				5B10F98F23FFF3D700DAE458 /* resizeImage.swift */,
+				5BFAB1A32401927300885320 /* dateFormatter.swift */,
 			);
 			path = MyMemo;
 			sourceTree = "<group>";
@@ -166,12 +183,15 @@
 			files = (
 				5B3CF5E623F87DF300A73405 /* DetailMemoViewController.swift in Sources */,
 				5B38C8FC23F2FD3300134676 /* DataManager.swift in Sources */,
+				5B10F99023FFF3D700DAE458 /* resizeImage.swift in Sources */,
 				5BC711BC23F925D1008FDE8B /* ImageTableViewCell.swift in Sources */,
 				5B11F10C23F1AC6F00894F2D /* AppDelegate.swift in Sources */,
 				5B11F10E23F1AC6F00894F2D /* SceneDelegate.swift in Sources */,
 				5B11F11623F1AC6F00894F2D /* MyMemo.xcdatamodeld in Sources */,
+				5B10F98E23FFF0DE00DAE458 /* AddNewMemoViewController+Alert.swift in Sources */,
+				5BFAB1A42401927300885320 /* dateFormatter.swift in Sources */,
 				5B11F12323F1C84900894F2D /* MemoListTableViewController.swift in Sources */,
-				5BA20EAC23F9B391002E0EF2 /* Alert.swift in Sources */,
+				5BA20EAC23F9B391002E0EF2 /* UIViewController+Alert.swift in Sources */,
 				5B38C8FE23F3147400134676 /* AddNewMemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
