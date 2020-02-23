@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextViewDelegate{
+class AddNewMemoViewController: UIViewController {
     
     @IBOutlet var titleTextField: UITextField!
     @IBOutlet var mainTextView: UITextView!
@@ -197,13 +197,17 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
                }
         
     }
+    
+}
 
+extension AddNewMemoViewController : UITextFieldDelegate , UITextViewDelegate{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        rightBarBtn.title = "저장"
         return true
     }
     
@@ -214,8 +218,8 @@ class AddNewMemoViewController: UIViewController ,UITextFieldDelegate , UITextVi
     func textViewDidBeginEditing(_ textView: UITextView) {
         rightBarBtn.title = "완료"
     }
-    
 }
+
 
 extension AddNewMemoViewController : UIImagePickerControllerDelegate,
 UINavigationControllerDelegate{
