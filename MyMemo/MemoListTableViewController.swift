@@ -11,9 +11,12 @@ import UIKit
 class MemoListTableViewController: UITableViewController {
     
     @IBOutlet var tvListView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
+        searchBar.enablesReturnKeyAutomatically = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -22,6 +25,11 @@ class MemoListTableViewController: UITableViewController {
         tvListView.reloadData()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        searchBar.text = ""
+        self.view.endEditing(true)
+    }
     
     // MARK: - Table view data source
     
@@ -82,4 +90,15 @@ class MemoListTableViewController: UITableViewController {
         }
     }
     
+}
+
+extension MemoListTableViewController :UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        DataManager.shared.memoList = DataManager.shared.searchMemo(searchText)
+        tvListView.reloadData()
+    }
+
 }

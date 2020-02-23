@@ -36,6 +36,37 @@ class DataManager {
         }
     }
     
+    func searchMemo(_ keyWord : String? = nil) ->[MyMemo]{
+        //리스트 생성
+               var result = [MyMemo]()
+               
+               //요청 객체 생성
+               let fetchRequest:NSFetchRequest<MyMemo> = MyMemo.fetchRequest()
+               //검색조건이 있는 경우 검색 조건 추가
+               if let t = keyWord , t.isEmpty == false{
+                   fetchRequest.predicate = NSPredicate(format:"title CONTAINS[c] %@", t)
+               }
+               
+               //2개 이상의 데이터를 가져올 때는 정렬 조건을 추가
+               let regDateDesc = NSSortDescriptor(key: "createDate", ascending: false)
+               fetchRequest.sortDescriptors = [regDateDesc]
+               do{
+                   //데이터 가져오기
+                   let resultSet = try self.mainContext.fetch(fetchRequest)
+                   //데이터 순회
+                   for record in resultSet{
+                       //1개의 데이터를 저장할 객체를 생성
+                    
+                       //목록에 저장
+                       result.append(record)
+                   }
+               }catch let e as NSError{
+                   print("\(e.localizedDescription)")
+               }
+               
+               return result
+    }
+    
     //새로운 메모 저장
     func saveNewMemo (_ title : String? , _ mainText : String? , _ addImage : [UIImage]) {
         let newMemo = MyMemo(context: mainContext)
