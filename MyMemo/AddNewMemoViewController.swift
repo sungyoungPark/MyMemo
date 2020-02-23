@@ -80,16 +80,12 @@ class AddNewMemoViewController: UIViewController {
             }
             
             if fromDetailView != nil {
-                fromDetailView?.title = titleTextField.text
-                fromDetailView?.mainText = mainTextView.text
-                fromDetailView?.myImage = DataManager.shared.convertImageToData(imageArr)
-                DataManager.shared.saveContext()
+                alertEditCheck()
             }
             else {
                 DataManager.shared.saveNewMemo(titleTextField.text, mainTextView.text, imageArr)
+                navigationController?.popViewController(animated: true)
             }
-            
-            navigationController?.popViewController(animated: true)
         }
     }
     
@@ -128,8 +124,7 @@ class AddNewMemoViewController: UIViewController {
     func loadURL(){
         let alert = UIAlertController(title: "URL 입력", message: "URL", preferredStyle: .alert)
         alert.addTextField{ (URLTextField) in
-            //URLTextField.placeholder = "URL"
-            URLTextField.text = "https://t1.daumcdn.net/thumb/R720x0/?fname=http://t1.daumcdn.net/brunch/service/user/3zNv/image/X0MipTW6Onu5KPyPRJyDxfFTqm4.jpg"  //test 용임 주석 처리 해줄것
+            URLTextField.placeholder = "URL"
         }
         
         let okAction = UIAlertAction(title: "확인", style: .default) { (ok) in
@@ -183,7 +178,7 @@ class AddNewMemoViewController: UIViewController {
         updateImage.image = resizeAddImage(image: image, height: scale )
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapImageForDelete))
         updateImage.addGestureRecognizer(tapGesture)
-       
+        
         imageUpdateView.insertArrangedSubview(updateImage, at: nextIndex)
         imageArr.append(image)
         
@@ -191,10 +186,10 @@ class AddNewMemoViewController: UIViewController {
             imageStackView.isHidden = false
         }
         
-        let offset = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y + (updateImage.image?.size.height)! + imageUpdateView.spacing + view.bounds.size.height)
+        let offset = CGPoint(x: scrollView.contentOffset.x, y: scrollView.contentOffset.y + imageUpdateView.bounds.size.height + imageUpdateView.spacing + view.bounds.size.height)
         UIView.animate(withDuration: 0.25) {
-                   self.scrollView.contentOffset = offset
-               }
+            self.scrollView.contentOffset = offset
+        }
         
     }
     

@@ -76,7 +76,7 @@ extension DetailMemoViewController : UITableViewDataSource , UITableViewDelegate
                 for image in memo!.myImage! {
                     let thumbnailView = UIImageView()
                     thumbnailView.image = UIImage(data: image)
-                    thumbnailView.contentMode = .scaleAspectFit
+                    thumbnailView.contentMode = .scaleToFill
                     thumbnailView.image = resizeDetailImage(image: thumbnailView.image!, width: view.frame.size.width)
                     cell.sv.insertArrangedSubview(thumbnailView, at: index)
                     index += 1

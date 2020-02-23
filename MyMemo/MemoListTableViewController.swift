@@ -97,7 +97,7 @@ extension MemoListTableViewController :UISearchBarDelegate {
         self.view.endEditing(true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        DataManager.shared.memoList = DataManager.shared.searchMemo(searchText)
+        DataManager.shared.searchMemo(searchText)
         tvListView.reloadData()
     }
 

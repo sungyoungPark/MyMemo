@@ -36,10 +36,9 @@ class DataManager {
         }
     }
     
-    func searchMemo(_ keyWord : String? = nil) ->[MyMemo]{
+    func searchMemo(_ keyWord : String? = nil) {
         //리스트 생성
                var result = [MyMemo]()
-               
                //요청 객체 생성
                let fetchRequest:NSFetchRequest<MyMemo> = MyMemo.fetchRequest()
                //검색조건이 있는 경우 검색 조건 추가
@@ -63,8 +62,7 @@ class DataManager {
                }catch let e as NSError{
                    print("\(e.localizedDescription)")
                }
-               
-               return result
+               memoList = result
     }
     
     //새로운 메모 저장

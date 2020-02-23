@@ -54,4 +54,22 @@ extension AddNewMemoViewController{
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
+    
+    func alertEditCheck(){
+        let alert = UIAlertController(title: nil, message: "편집한 내용을 저장할까요?", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "예", style: .default ){
+            (action) in
+            self.fromDetailView?.title = self.titleTextField.text
+            self.fromDetailView?.mainText = self.mainTextView.text
+            self.fromDetailView?.createDate = Date()
+            self.fromDetailView?.myImage = DataManager.shared.convertImageToData(self.imageArr)
+            DataManager.shared.saveContext()
+            self.navigationController?.popViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        alert.addAction(okAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
