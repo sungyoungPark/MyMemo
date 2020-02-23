@@ -5,9 +5,9 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSCameraUsageDescription</key>
-	<string>test</string>
+	<string>카메라 사용 권한을 설정해주세요</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>test</string>
+	<string>앨범 사용 권한을 설정해주세요</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

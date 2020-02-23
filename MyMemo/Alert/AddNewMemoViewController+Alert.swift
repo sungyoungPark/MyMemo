@@ -72,4 +72,21 @@ extension AddNewMemoViewController{
         present(alert, animated: true, completion: nil)
     }
     
+    func setPhotoLibraryAuth(){
+        if let appName = Bundle.main.infoDictionary!["CFBundleName"] as? String{
+            let alert = UIAlertController(title: "설정", message: "\(appName)가 카메라 접근 헝용되어 있지 않습니다. 설정화면으로 가시겠습니까?", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "아니요", style: .default, handler: nil)
+            let ok = UIAlertAction(title: "네", style: .default){ (action) in
+                UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+            }
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+        }
+        else {
+            
+        }
+    }
 }
+
+
