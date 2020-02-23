@@ -109,25 +109,21 @@ class AddNewMemoViewController: UIViewController {
     {
         switch PHPhotoLibrary.authorizationStatus() {
         case .denied:
-            print("거절됨")
             setPhotoLibraryAuth()
             break
         case .restricted:
-            print("restrict")
             break
         case .authorized:
-            print("허용됨")
             picker.sourceType = .photoLibrary
             present(picker, animated: false, completion: nil)
             break
         case .notDetermined:
-            print("notDeter")
             PHPhotoLibrary.requestAuthorization({ state in
-                if state == .authorized {
-                    self.picker.sourceType = .photoLibrary
-                    self.present(self.picker, animated: false, completion: nil)
+                if state != .authorized { //권한 물어보기
+                    // self.picker.sourceType = .photoLibrary
+                    // self.present(self.picker, animated: false, completion: nil)
                 }else {
-                    self.dismiss(animated: true, completion: nil)
+                    // self.dismiss(animated: true, completion: nil)
                 }
             })
             break
@@ -139,12 +135,32 @@ class AddNewMemoViewController: UIViewController {
     
     func openCamera()
     {
+        switch AVCaptureDevice.authorizationStatus(for: .video){
+        case .denied:
+            print("Denied, request permission from settings")
+            presentCameraSettings()
+            break
+        case .restricted:
+            print("Restricted, device owner must approve")
+            break
+        case .authorized:
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){
             picker.sourceType = .camera
             present(picker, animated: false, completion: nil)
         }
         else{
             alert(message: "카메라를 사용 할 수 없습니다")
+        }
+            break
+        default:
+            if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+                picker.sourceType = .camera
+                present(picker, animated: false, completion: nil)
+            }
+            else{
+                alert(message: "카메라를 사용 할 수 없습니다")
+            }
+            break
         }
     }
     
