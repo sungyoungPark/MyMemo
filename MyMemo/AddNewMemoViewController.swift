@@ -137,11 +137,9 @@ class AddNewMemoViewController: UIViewController {
     {
         switch AVCaptureDevice.authorizationStatus(for: .video){
         case .denied:
-            print("Denied, request permission from settings")
             presentCameraSettings()
             break
         case .restricted:
-            print("Restricted, device owner must approve")
             break
         case .authorized:
         if(UIImagePickerController .isSourceTypeAvailable(.camera)){

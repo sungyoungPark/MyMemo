@@ -95,10 +95,8 @@ extension AddNewMemoViewController{
             let ok = UIAlertAction(title: "네", style: .default) { (action) in
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             }
-            
             alert.addAction(cancel)
             alert.addAction(ok)
-            
             present(alert, animated: true)
         }
         else{
