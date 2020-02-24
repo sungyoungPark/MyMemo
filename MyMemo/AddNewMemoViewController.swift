@@ -107,30 +107,14 @@ class AddNewMemoViewController: UIViewController {
     
     func openLibrary()
     {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .denied:
+        
+        if PHPhotoLibrary.authorizationStatus() == .denied{
             setPhotoLibraryAuth()
-            break
-        case .restricted:
-            break
-        case .authorized:
+        }
+        else{
             picker.sourceType = .photoLibrary
             present(picker, animated: false, completion: nil)
-            break
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization({ state in
-                if state != .authorized { //권한 물어보기
-                    // self.picker.sourceType = .photoLibrary
-                    // self.present(self.picker, animated: false, completion: nil)
-                }else {
-                    // self.dismiss(animated: true, completion: nil)
-                }
-            })
-            break
-        default:
-            break
         }
-        
     }
     
     func openCamera()
@@ -142,13 +126,13 @@ class AddNewMemoViewController: UIViewController {
         case .restricted:
             break
         case .authorized:
-        if(UIImagePickerController .isSourceTypeAvailable(.camera)){
-            picker.sourceType = .camera
-            present(picker, animated: false, completion: nil)
-        }
-        else{
-            alert(message: "카메라를 사용 할 수 없습니다")
-        }
+            if(UIImagePickerController .isSourceTypeAvailable(.camera)){
+                picker.sourceType = .camera
+                present(picker, animated: false, completion: nil)
+            }
+            else{
+                alert(message: "카메라를 사용 할 수 없습니다")
+            }
             break
         default:
             if(UIImagePickerController .isSourceTypeAvailable(.camera)){
