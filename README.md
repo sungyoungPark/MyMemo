@@ -29,7 +29,10 @@
   
 ## ■ 앱 실행화면
 <div>
-<img src="appLaunchImage/mymemo_main.png" title="앱 메인 화면" width="250" height="450">
+  <figure>
+     <img src="appLaunchImage/mymemo_main.png" alt="앱 메인 화면" width="250" height="450">
+     <figcaption>앱 메인 </figcaption>
+    </figure>
 
 </div>
 ## 요약
