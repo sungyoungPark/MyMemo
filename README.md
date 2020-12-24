@@ -28,10 +28,16 @@
   + 편집 시에는 기존에 첨부된 이미지가 나타나며, 이미지를 더 추가하거나 기존 이미지를 삭제할 수 있습니다.
   
 ## ■ 앱 실행화면
+figcaption {
+     display: block;
+     padding: 1rem 0 .5rem;
+     color: #777;
+}
+
 <div>
   <figure>
-     <img src="appLaunchImage/mymemo_main.png" alt="앱 메인 화면" width="250" height="450">
-     <figcaption>앱 메인 </figcaption>
+     <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
+     <figcaption>앱 메인 화면</figcaption>
     </figure>
 
 </div>
