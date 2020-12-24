@@ -40,7 +40,7 @@
      <figcaption>⬅︎ 메모 추가</figcaption>
   </figure><figure>
      <img src="appLaunchImage/mymemo_addPicByURL.png" width="250" height="450">
-     <figcaption>⬅︎ 이미지 url을 통한 추가</figcaption>
+     <figcaption>⬅︎ 이미지 url</figcaption>
   </figure>
 </div>
 
