@@ -33,7 +33,7 @@
 <div>
   <figure>
      <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
-     <figcaption>⬅︎ 앱 메인 화면</figcaption>
+     <figcaption>⬅︎ 메인 화면</figcaption>
   </figure>
 <figure>
      <img src="appLaunchImage/mymemo_addMemo.png" width="250" height="450">
