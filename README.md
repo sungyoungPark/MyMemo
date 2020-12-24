@@ -33,16 +33,28 @@
 <div>
   <figure>
      <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
-     <figcaption>앱 메인 화면</figcaption>
+     <figcaption>⬅︎ 앱 메인 화면</figcaption>
   </figure>
 <figure>
-     <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
-     <figcaption>앱 메인 화면</figcaption>
+     <img src="appLaunchImage/mymemo_addMemo.png" width="250" height="450">
+     <figcaption>⬅︎ 메모 추가</figcaption>
   </figure><figure>
-     <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
-     <figcaption>앱 메인 화면</figcaption>
+     <img src="appLaunchImage/mymemo_addPicByURL.png" width="250" height="450">
+     <figcaption>⬅︎ 이미지 url을 통한 추가</figcaption>
   </figure>
 </div>
+
+<div>
+  <figure>
+     <img src="appLaunchImage/mymemo_after.png" width="250" height="450">
+     <figcaption>⬅︎ 이미지 첨부 후</figcaption>
+  </figure>
+  <figure>
+     <img src="appLaunchImage/mymemo_create.png" width="250" height="450">
+     <figcaption>⬅︎ 메모 화면</figcaption>
+  </figure>
+</div>
+  
 ## 요약
 
 - 1.진행 기간 : 2020.02.10 ~ 2020.02.24
