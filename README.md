@@ -28,34 +28,20 @@
   + 편집 시에는 기존에 첨부된 이미지가 나타나며, 이미지를 더 추가하거나 기존 이미지를 삭제할 수 있습니다.
   
 ## ■ 앱 실행화면
-figure {
-    border: thin #c0c0c0 solid;
-    display: flex;
-    flex-flow: column;
-    padding: 5px;
-    max-width: 220px;
-    margin: auto;
-}
 
-img {
-    max-width: 250px;
-    max-height: 450px;
-}
-
-figcaption {
-    background-color: #222;
-    color: #fff;
-    font: italic smaller sans-serif;
-    padding: 3px;
-    text-align: center;
-}
 
 <div>
   <figure>
      <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
      <figcaption>앱 메인 화면</figcaption>
   </figure>
-
+<figure>
+     <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
+     <figcaption>앱 메인 화면</figcaption>
+  </figure><figure>
+     <img src="appLaunchImage/mymemo_main.png" width="250" height="450">
+     <figcaption>앱 메인 화면</figcaption>
+  </figure>
 </div>
 ## 요약
 
