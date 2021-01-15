@@ -29,9 +29,12 @@
   
 ## ■ 앱 실행화면
 
-![addMemo](https://user-images.githubusercontent.com/55025822/104723338-7a057b80-5772-11eb-8678-e63bb7d5a28b.gif)
-![searchMemo](https://user-images.githubusercontent.com/55025822/104722790-b5ec1100-5771-11eb-9d69-5bc19d284328.gif)
-![deleteMemo](https://user-images.githubusercontent.com/55025822/104722523-4a09a880-5771-11eb-8bb9-eb95045acae4.gif)
+![addMemo](https://user-images.githubusercontent.com/55025822/104723870-3a8b5f00-5773-11eb-82dd-264af23fe422.gif)
+
+![searchMemo](https://user-images.githubusercontent.com/55025822/104723943-568f0080-5773-11eb-91b8-8a92f1aa8104.gif)
+
+![deleteMemo](https://user-images.githubusercontent.com/55025822/104723999-6c042a80-5773-11eb-979a-2c2c4411dd2c.gif)
+
 
 
 <div>
