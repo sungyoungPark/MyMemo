@@ -29,7 +29,8 @@
   
 ## ■ 앱 실행화면
 
-![addMemo](https://user-images.githubusercontent.com/55025822/104721622-e54e4e00-5770-11eb-8b9f-aea33c76e029.gif)
+![deleteMemo](https://user-images.githubusercontent.com/55025822/104722523-4a09a880-5771-11eb-8bb9-eb95045acae4.gif)
+
 
 <div>
   <figure>
